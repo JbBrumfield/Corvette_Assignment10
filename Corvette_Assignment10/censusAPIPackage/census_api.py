@@ -1,4 +1,17 @@
 
+# File Name : census_api.py
+# Student Name: Jacob Brumfield, Sharvari Patil, Rithu Aynampudi, Saivamsi Amireddy
+# email:  brumfijb@mail.uc.edu, patilsg@mail.uc.edu, aynampru@mail.uc.edu, amiredsr@mail.uc.edu
+# Assignment Number: Assignment 10
+# Due Date:   4/10/2025
+# Course #/Section:   IS 4010 001
+# Semester/Year:   Spring 2025
+# Brief Description of the assignment:  Integrates an API that has data on the population of cities around the United States. Then it prints interesting information from this API.
+
+# Brief Description of what this module does: This module prints the interesting information from the API and CSV file.
+# Citations: https://realpython.com/, https://www.w3schools.com/python/, https://pythongeeks.org/
+
+# Anything else that's relevant:
 
 import requests
 import csv
