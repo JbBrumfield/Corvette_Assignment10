@@ -35,7 +35,8 @@ class CensusAPI:
         except requests.exceptions.RequestException as e:
             print(f"Error fetching data: {e}")
             return None
-        def save_to_csv(self, data, filename):
+    
+    def save_to_csv(self, data, filename):
         """
         Saves the fetched data to a CSV file
         Returns CSV file
@@ -44,6 +45,7 @@ class CensusAPI:
         if data is None:
             print("No data to write to CSV.")
             return
+
         try:
             with open(filename, mode="w", newline='') as file:
                 writer = csv.writer(file)
@@ -54,27 +56,27 @@ class CensusAPI:
         except Exception as e:
             print(f"Error saving data to CSV: {e}")
  
-        def get_population_insights(self, data):
-             """
-            Analyzes the population data and returns insights.
-            Returns a dictionary containing:
-            - total_counties
-            - total_population
-            - average_population
-            - most_populous
-            - least_populous
-            - top_5
-            """
+    def get_population_insights(self, data):
+        """
+        Analyzes the population data and returns insights.
+        Returns a dictionary containing:
+        - total_counties
+        - total_population
+        - average_population
+        - most_populous
+        - least_populous
+        - top_5
+        """
         if not data or len(data) < 2:
             return {"error": "No data available for analysis."}
- 
+
         header = data[0]
         try:
             name_index = header.index("NAME")
-            pop_index = header.index("POP_2021")
+            pop_index =  header.index("POP_2021")
         except ValueError:
-            return {"error": "Expected columns 'NAME' and 'POP' not found in data."}
- 
+            return {"error": "Expected columns 'NAME' and 'POP_2021' not found in data."}
+
         counties = []
         total_population = 0
 
@@ -86,13 +88,13 @@ class CensusAPI:
                 total_population += population
             except (ValueError, IndexError):
                 continue  # Skip rows with invalid data
- 
+
         if not counties:
             return {"error": "No valid population data found."}
- 
+
         counties.sort(key=lambda x: x[1], reverse=True)
         average_population = total_population // len(counties)
- 
+
         return {
             "total_counties": len(counties),
             "total_population": total_population,
@@ -100,4 +102,5 @@ class CensusAPI:
             "most_populous": counties[0],
             "least_populous": counties[-1],
             "top_5": counties[:5]
+                                        
         }
