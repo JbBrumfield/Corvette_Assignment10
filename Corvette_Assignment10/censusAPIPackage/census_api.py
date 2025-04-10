@@ -45,3 +45,27 @@ class CensusAPI:
  
         counties = []
         total_population = 0
+
+        for row in data[1:]:
+            try:
+                name = row[name_index]
+                population = int(row[pop_index])
+                counties.append((name, population))
+                total_population += population
+            except (ValueError, IndexError):
+                continue  # Skip rows with invalid data
+ 
+        if not counties:
+            return {"error": "No valid population data found."}
+ 
+        counties.sort(key=lambda x: x[1], reverse=True)
+        average_population = total_population // len(counties)
+ 
+        return {
+            "total_counties": len(counties),
+            "total_population": total_population,
+            "average_population": average_population,
+            "most_populous": counties[0],
+            "least_populous": counties[-1],
+            "top_5": counties[:5]
+        }
