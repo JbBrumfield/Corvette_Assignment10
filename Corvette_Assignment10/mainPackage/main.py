@@ -16,7 +16,7 @@ from censusAPIPackage.census_api import CensusAPI
 
 def main():
     # Define the URL for the API request
-    url = "https://api.census.gov/data/2021/pep/population?get=DENSITY_2021,POP_2021,NAME,STATE&for=region:*"
+    url = "https://api.census.gov/data/2021/pep/population?get=DENSITY_2021,POP_2021,NAME,STATE&for=region:*" #API KEY: d84060d271f75d97547977c1bcfbda9f6cb7a81c
     
     # Instantiate the CensusAPI class
     api = CensusAPI(url)
