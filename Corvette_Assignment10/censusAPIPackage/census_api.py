@@ -22,6 +22,25 @@ class CensusAPI:
         except requests.exceptions.RequestException as e:
             print(f"Error fetching data: {e}")
             return None
+        def save_to_csv(self, data, filename):
+        """
+        Saves the fetched data to a CSV file
+        Returns CSV file
+        """
+
+        if data is None:
+            print("No data to write to CSV.")
+            return
+        try:
+            with open(filename, mode="w", newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(data[0])  # Write header
+                for row in data[1:]:
+                    writer.writerow(row)  # Write data rows
+            print(f"Data has been successfully saved to {filename}.")
+        except Exception as e:
+            print(f"Error saving data to CSV: {e}")
+ 
         def get_population_insights(self, data):
              """
             Analyzes the population data and returns insights.
